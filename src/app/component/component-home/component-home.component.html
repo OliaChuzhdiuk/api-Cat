@@ -1,0 +1,32 @@
+<input
+  type="text"
+  placeholder="Breed"
+  [(ngModel)]="term"
+  (ngModelChange)="filterHome()"
+/>
+
+<div class="grid">
+  <div
+    class="box"
+    *ngFor="
+      let home of home
+        | paginate
+          : {
+              itemsPerPage: resultsPerPage,
+              currentPage: page,
+              totalItems: totalHome
+            }
+    "
+  >
+    <div class="box_info">
+      <h3>
+        {{ home.name }}
+      </h3>
+      <img [src]="home.sprites.front_default" alt="Pokemon" />
+      <p><b>Height:</b>{{ home.height }}</p>
+    </div>
+  </div>
+</div>
+<pagination-controls
+  (pageChange)="page = $event; home = []; getHome()"
+></pagination-controls>
