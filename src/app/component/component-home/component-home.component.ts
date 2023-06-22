@@ -8,18 +8,17 @@ import { IHome } from 'src/module/home.interface';
   styleUrls: ['./component-home.component.scss'],
 })
 export class ComponentHomeComponent implements OnInit {
-  resultsPerPage: number = 10;
+  resultsPerPage: number = 20;
   term: string = '';
   home: IHome[] = [];
   page = 1;
   totalHome: number | undefined;
-  filteredHome: IHome[] = [];
+  searchTerm: string = '';
 
   constructor(private myDataService: MyDataService) {}
 
   ngOnInit(): void {
     this.getHome();
-    this.filterHome();
   }
 
   getHome() {
@@ -32,16 +31,17 @@ export class ComponentHomeComponent implements OnInit {
             this.home.push(uniqResponse);
           });
       });
+      this.filterData();
     });
   }
 
-  filterHome() {
-    const slicedHome = this.home.slice(0, this.resultsPerPage);
-    this.filteredHome = slicedHome.filter((home: IHome) => {
-      const matchesSearchTerm = home.name
-        .toLowerCase()
-        .includes(this.term.toLowerCase());
-      return matchesSearchTerm;
-    });
+  filterData() {
+    if (this.searchTerm === '') {
+      this.home = this.home.slice();
+    } else {
+      this.home = this.home.filter((res) => {
+        return res.name.toLowerCase().includes(this.searchTerm.toLowerCase());
+      });
+    }
   }
 }

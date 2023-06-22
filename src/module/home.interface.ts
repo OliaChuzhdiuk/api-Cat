@@ -1,4 +1,5 @@
 export interface IHome {
+  searchTerm: any;
   breed: any;
   item: any;
   sprites: {
