@@ -1,11 +1,23 @@
 <div class="container">
   <h2>Repositories for {{ login }}</h2>
-  <ul>
-    <li *ngFor="let repo of repositories">
-      <div (click)="openRepositoryModal(repo)">View Details</div>
-      <strong>{{ repo.name }}</strong
-      ><br />
-      {{ repo.description }}
-    </li>
-  </ul>
+
+  <!-- Create two rows using Bootstrap's row and col classes -->
+  <div class="row">
+    <div class="col-md-6" *ngFor="let repo of repositories">
+      <div class="card mb-3">
+        <!-- Card Header -->
+        <div class="card-header">
+          <h5 class="card-title">{{ repo.name }}</h5>
+        </div>
+
+        <!-- Card Body -->
+        <div class="card-body">
+          <p class="card-text">{{ repo.description }}</p>
+          <button class="btn btn-primary" (click)="openRepositoryModal(repo)">
+            View Details
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
