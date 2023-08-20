@@ -1,0 +1,29 @@
+<div class="container input-group">
+  <!-- Search Input Field -->
+  <input
+    class="form-control mb-10"
+    [(ngModel)]="searchTerm"
+    type="text"
+    placeholder="Search"
+    (input)="onSearchInput()"
+  />
+</div>
+
+<!-- User List -->
+<div class="container">
+  <div class="row">
+    <div
+      class="col-md-6 mb-3"
+      *ngFor="let user of searchTerm ? searchResults : users"
+    >
+      <div class="card">
+        <img [src]="user.avatar_url" alt="Avatar" class="card-img-top" />
+        <div class="card-body">
+          <a [routerLink]="['/repos', user.login]" class="btn btn-primary">{{
+            user.login
+          }}</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,27 +1,31 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
-
+import { ModalModule } from 'ngx-bootstrap/modal';
 import { AppComponent } from './app.component';
-import { ComponentHomeComponent } from './component/component-home/component-home.component';
+import { AppRoutingModule } from './app-routing.module';
 
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { UserListComponent } from './user-list/user-list.component';
 
-import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-import { NgxPaginationModule } from 'ngx-pagination';
-
-import { FilterPipe } from './filter.pipe';
+import { RepositoryListComponent } from './repository-list/repository-list.component';
+import { RepositoryDetailComponent } from './repository-detail/repository-detail.component';
 
 @NgModule({
-  declarations: [AppComponent, ComponentHomeComponent, FilterPipe],
+  declarations: [
+    AppComponent,
+    UserListComponent,
+    RepositoryListComponent,
+    RepositoryDetailComponent,
+  ],
   imports: [
+    ModalModule.forRoot(),
     BrowserModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    MatSlideToggleModule,
-    NgxPaginationModule,
     FormsModule,
+    AppRoutingModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
